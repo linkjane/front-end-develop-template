@@ -1,0 +1,7 @@
+{
+  "name": "dingidng-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@code.aliyun.com:dingidng-demo/dingidng-demo.git",
+  "license": "MIT"
+}
