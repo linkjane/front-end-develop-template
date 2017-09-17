@@ -20,6 +20,12 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.jsx?$/,
+                use: [
+                    'babel-loader'
+                ]
+            },
+            {
                 test: /\.css$/,
                 use:  ExtractTextPlugin.extract({
                     use: 'css-loader',
