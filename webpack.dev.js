@@ -10,8 +10,14 @@ hostName = os.hostname();
 if (os.platform() == "darwin") {
     netCard = os.networkInterfaces().en1;
 } else if(os.platform() == 'win32'){
-    netCard = os.networkInterfaces().以太网;
+    if (os.networkInterfaces().以太网) {
+        netCard = os.networkInterfaces().以太网;
+    } else {
+        netCard = os.networkInterfaces().WLAN;
+    }
+    
 }
+
 
 for(var i=0;i<netCard.length;i++){
     if(netCard[i].family=='IPv4'){
