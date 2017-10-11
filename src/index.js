@@ -1,5 +1,4 @@
 import './style';
-import  './ding';
 
 
 import ReactDOM from 'react-dom';

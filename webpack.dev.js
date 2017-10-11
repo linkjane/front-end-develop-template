@@ -27,7 +27,7 @@ for(var i=0;i<netCard.length;i++){
 }
 
 module.exports = merge(common, {
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     devServer: {
         contentBase: './',
         // hot: true
