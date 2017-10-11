@@ -20,15 +20,17 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2",
+    "webpack-dev-server": "1.16.2",
     "webpack-merge": "^4.1.0"
   },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "watch": "webpack --progress --watch",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "webpack": "webpack"
   },
   "dependencies": {
+    "fetch-polyfill": "^0.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2"
