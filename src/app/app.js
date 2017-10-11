@@ -9,7 +9,6 @@ import {
 
 import { Home, AuthDemo, NoAuthDemo } from './page';
 
-
 export default class App extends React.Component {
     constructor(props) {
        super(props);
