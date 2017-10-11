@@ -1,5 +1,4 @@
-import 'babel-polyfill';
-import './config/dingtalk';
+import './style';
 import  './ding';
 
 
