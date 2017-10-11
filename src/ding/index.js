@@ -72,19 +72,6 @@ async function ddConfig() {
                     //     }
                     // });
 
-                    dd.biz.util.scan({
-                        type: "all" , // type 为 all、qrCode、barCode，默认是all。
-                        onSuccess: function(data) {
-                            //onSuccess将在扫码成功之后回调
-                            /* data结构
-                             { 'text': String}
-                             */
-                            console.log(data);
-                        },
-                        onFail : function(err) {
-                            console.log(err);
-                        }
-                    })
                 });
             } else {
                 console.log(data.errors);

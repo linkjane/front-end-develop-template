@@ -6,7 +6,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+       index: './src/index.js',
+       vendor: './src/vendor.js'
+    },
     output: {
         filename: '[name].[hash].bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -21,6 +24,11 @@ module.exports = {
             name: 'runtime'
         })
     ],
+    resolve: {
+        alias: {
+            'util': path.resolve(__dirname, './src/app/util'),
+        }
+    },
     module: {
         rules: [
             {
@@ -32,7 +40,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use:  ExtractTextPlugin.extract({
                     use: 'css-loader?modules!postcss-loader',
                     fallback: 'style-loader',
@@ -42,11 +50,16 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 exclude: /node_modules/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192
+                        }
+                    }
                 ]
             },
             {
-                test: /.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
                 exclude: /node_modules/,
                 use: [
                     'file-loader'

@@ -7,8 +7,9 @@ let IPv4, hostName, netCard;
 
 hostName = os.hostname();
 
+
 if (os.platform() == "darwin") {
-    netCard = os.networkInterfaces().en1;
+    netCard = os.networkInterfaces().en0;
 } else if(os.platform() == 'win32'){
     if (os.networkInterfaces().以太网) {
         netCard = os.networkInterfaces().以太网;

@@ -7,6 +7,9 @@ import {
 } from 'react-router-dom';
 
 
+import { Home, AuthDemo, NoAuthDemo } from './page';
+
+
 export default class App extends React.Component {
     constructor(props) {
        super(props);
@@ -20,58 +23,9 @@ export default class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Route exact path='/' render={() => {
-                       return (<div>
-                           <button onClick={() => {
-                               dd.biz.util.scan({
-                                   type: 'all' , // type 为 all、qrCode、barCode，默认是all。
-                                   onSuccess: function(data) {
-                                       //onSuccess将在扫码成功之后回调
-                                       /* data结构
-                                        { 'text': String}
-                                        */
-                                       alert(JSON.stringify(data));
-                                   },
-                                   onFail : function(err) {
-                                   }
-                               })
-                           }}>点我扫码</button>
-                           <button onClick={() => {
-                               dd.device.geolocation.get({
-                                   targetAccuracy : Number,
-                                   coordinate : Number,
-                                   withReGeocode : Boolean,
-                                   useCache:true, //默认是true，如果需要频繁获取地理位置，请设置false
-                                   onSuccess : function(result) {
-
-                                       /* 高德坐标 result 结构
-                                                {
-                                                    longitude : Number,
-                                                    latitude : Number,
-                                                    accuracy : Number,
-                                                    address : String,
-                                                    province : String,
-                                                    city : String,
-                                                    district : String,
-                                                    road : String,
-                                                    netType : String,
-                                                    operatorType : String,
-                                                    errorMessage : String,
-                                                    errorCode : Number,
-                                                    isWifiEnabled : Boolean,
-                                                    isGpsEnabled : Boolean,
-                                                    isFromMock : Boolean,
-                                                    provider : wifi|lbs|gps,
-                                                    accuracy : Number,
-                                                    isMobileEnabled : Boolean
-                                                }
-                                                */
-                                   },
-                                   onFail : function(err) {}
-                               });
-                           }}>获得定位</button>
-                       </div>)
-                    }}></Route>
+                    <Route exact path='/' component={Home}  ></Route>
+                    <Route exact path='/auth-demo' component={AuthDemo}  ></Route>
+                    <Route exact path='/no-auth-demo' component={NoAuthDemo}  ></Route>
                 </div>
             </Router>
         )
