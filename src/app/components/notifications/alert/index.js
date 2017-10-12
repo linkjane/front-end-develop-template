@@ -29,7 +29,7 @@ export default class NoAuthDemo extends React.Component {
        
 
         return (<div>
-                不需要鉴权
+                提示组件内部
         </div>)
     }
 }

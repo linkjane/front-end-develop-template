@@ -23,8 +23,8 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Route exact path='/' component={Home}  ></Route>
-                    <Route exact path='/auth-demo' component={AuthDemo}  ></Route>
-                    <Route exact path='/no-auth-demo' component={NoAuthDemo}  ></Route>
+                    <Route  path='/auth-demo' component={AuthDemo}  ></Route>
+                    <Route  path='/no-auth-demo' component={NoAuthDemo}  ></Route>
                 </div>
             </Router>
         )

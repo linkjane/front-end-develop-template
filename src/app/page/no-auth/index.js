@@ -1,21 +1,20 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
-import NoAuthDemo from '../../components/notifications/alert';
-console.log(NoAuthDemo);
+import { NotificationsRoute } from 'components/notifications';
+
+export default ({ match }) => (<div>
+
+    <Route exact path={match.url} render={() =>
+        (<div>
+            <Link to={`${match.url}/notifications`}>提醒组件</Link>
+            {/* 添加新的组件 */}
 
 
-
-export default class AuthRouter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-    render() {
-
-        return (<div>
-               <Route  path="/" component={NoAuthDemo}></Route>
         </div>)
-    }
-}
+    }></Route>
+
+    <Route path={`${match.url}/notifications`} component={NotificationsRoute}></Route>
+
+</div>)
+

@@ -25,7 +25,7 @@
     "webpack-merge": "^4.1.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start": "webpack-dev-server --hotOnly --open --config webpack.dev.js",
     "watch": "webpack --progress --watch",
     "build": "webpack --config webpack.prod.js",
     "webpack": "webpack"

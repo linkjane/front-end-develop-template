@@ -54,6 +54,5 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
-        hot: true
     }
 };
