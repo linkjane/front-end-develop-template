@@ -6,10 +6,11 @@ import { NotificationsRoute } from 'components/no-auth/notifications';
 export default ({ match }) => (<div>
 
     <Route exact path={match.url} render={() =>
-        (<div>
-            <Link to={`${match.url}/notifications`}>提醒组件</Link>
-            {/* 添加新的组件 */}
-
+        (<div className="card">
+            <div className="card-body">
+                <Link to={`${match.url}/notifications`}>提醒组件</Link>
+                {/* 添加新的组件 */}
+            </div>
 
         </div>)
     }></Route>
