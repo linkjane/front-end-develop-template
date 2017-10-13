@@ -28,6 +28,10 @@ async function ddConfig() {
                     signature: signature,
                     jsApiList: jsapiArr
                 });
+                dd.error(err => {
+                    console.error(err);
+                    alert(JSON.stringify(err));
+                });
             } else {
                 console.log(data.errors);
             }
