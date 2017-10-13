@@ -2,3 +2,5 @@
 node_modules/
 test/
 npm-debug.log.940594640
+yarn.lock
+npm-debug.log
