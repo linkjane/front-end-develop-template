@@ -28,54 +28,8 @@ async function ddConfig() {
                     signature: signature,
                     jsApiList: jsapiArr
                 });
-
-                dd.error(function (error) {
-                    alert(JSON.stringify(error));
-                    alert('鉴权失败, 请联系管理员');
-                    reject("DingTalk jsApi concent : ", JSON.stringify(error))
-                });
-
-                dd.ready(async () => {
-                    console.log("dingding ready!");
-                    // dd.device.geolocation.get({
-                    //     targetAccuracy : Number,
-                    //     coordinate : Number,
-                    //     withReGeocode : Boolean,
-                    //     useCache:true, //默认是true，如果需要频繁获取地理位置，请设置false
-                    //     onSuccess : function(result) {
-                    //         /* 高德坐标 result 结构
-                    //          {
-                    //          longitude : Number,
-                    //          latitude : Number,
-                    //          accuracy : Number,
-                    //          address : String,
-                    //          province : String,
-                    //          city : String,
-                    //          district : String,
-                    //          road : String,
-                    //          netType : String,
-                    //          operatorType : String,
-                    //          errorMessage : String,
-                    //          errorCode : Number,
-                    //          isWifiEnabled : Boolean,
-                    //          isGpsEnabled : Boolean,
-                    //          isFromMock : Boolean,
-                    //          provider : wifi|lbs|gps,
-                    //          accuracy : Number,
-                    //          isMobileEnabled : Boolean
-                    //          }
-                    //          */
-                    //         console.log(result);
-                    //     },
-                    //     onFail : function(err) {
-                    //         console.log(err);
-                    //     }
-                    // });
-
-                });
             } else {
                 console.log(data.errors);
-                alert(JSON.stringify(data.errors))
             }
         } catch (e) {
             console.log(e);

@@ -13,9 +13,6 @@ import Confirm  from './confirm/index';
 const NotificationsRoute = ({ match }) => (<div>
     <Route exact path={match.url} render={() => (<div>
         <Link to={`${match.url}/alert`}>alert警告</Link>
-    </div>)}></Route>
-
-    <Route exact path={match.url} render={() => (<div>
         <Link to={`${match.url}/confirm`}>confirm提示</Link>
     </div>)}></Route>
 
@@ -25,4 +22,5 @@ const NotificationsRoute = ({ match }) => (<div>
 </div>);
 
 
-export { Alert, NotificationsRoute };
+//第一个导出路由, 剩下的都是各自的组件
+export { NotificationsRoute, Alert };
