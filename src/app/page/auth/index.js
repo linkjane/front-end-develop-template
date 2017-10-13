@@ -1,4 +1,4 @@
-// import  '../../../ding';
+import  '../../../ding';
 
 import React from 'react';
 

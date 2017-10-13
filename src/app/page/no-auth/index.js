@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
-import { NotificationsRoute } from 'components/notifications';
+import { NotificationsRoute } from 'components/no-auth/notifications';
 
 export default ({ match }) => (<div>
 

@@ -4,8 +4,8 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 
-import Alert from './alert';
-import Confirm  from './confirm';
+import Alert from './alert/index';
+import Confirm  from './confirm/index';
 
 
 
