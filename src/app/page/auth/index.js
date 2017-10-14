@@ -1,7 +1,11 @@
+import { ddConfig } from  'dings';
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 import { GeoLocationRoute }from 'components/auth/geolocation';
+
+//鉴权
+ddConfig();
 
 export default ({ match }) => (<div>
 

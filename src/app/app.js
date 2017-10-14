@@ -6,8 +6,26 @@ import {
     Link
 } from 'react-router-dom';
 
+import { Bunlde } from 'components/common'
 
-import { Home, AuthDemo, NoAuthDemo } from './page';
+import Home from './page/home';
+
+const NoAuthDemoContainer = (props) =>  (
+    <Bunlde load={() => import('./page/no-auth') }>
+        {
+            (AuthDemoContainer) => <AuthDemoContainer {...props}/>
+        }
+    </Bunlde>
+);
+
+
+const AuthDemoContainer = (props) =>  (
+    <Bunlde load={() => import('./page/auth') }>
+        {
+            (AuthDemoContainer) => <AuthDemoContainer {...props}/>
+        }
+    </Bunlde>
+);
 
 export default class App extends React.Component {
     constructor(props) {
@@ -23,8 +41,8 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Route exact path='/' component={Home}  ></Route>
-                    <Route  path='/auth-demo' component={AuthDemo}  ></Route>
-                    <Route  path='/no-auth-demo' component={NoAuthDemo}  ></Route>
+                    <Route  path='/auth-demo' component={AuthDemoContainer}  ></Route>
+                    <Route  path='/no-auth-demo' component={NoAuthDemoContainer}  ></Route>
                 </div>
             </Router>
         )

@@ -11,8 +11,9 @@ module.exports = {
        vendor: './src/vendor.js'
     },
     output: {
-        filename: '[name].[hash].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        chunkFilename: '[name].chunk.js'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -27,7 +28,8 @@ module.exports = {
     resolve: {
         alias: {
             'util': path.resolve(__dirname, './src/app/util'),
-            'components': path.resolve(__dirname, './src/app/components')
+            'components': path.resolve(__dirname, './src/app/components'),
+            'dings': path.resolve(__dirname, './src/ding')
         }
     },
     module: {

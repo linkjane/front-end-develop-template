@@ -3,9 +3,10 @@ import jsapi from './jsapi.json';
 const { AUTH_URL, APP_URL } = require(`../config/develop.json`);
 
 async function ddConfig() {
+
         let jsapiArr = Object.keys(jsapi);
         try {
-            
+
             let res = await fetch(AUTH_URL, {
                 method: 'POST',
                 body: JSON.stringify({
@@ -14,7 +15,7 @@ async function ddConfig() {
             });
             console.log('heeh');
             let data = await res.json();
-            console.log(data); 
+            console.log(data);
             if (data.success) {
                 console.log(data);
                 const {corpId, timeStamp, nonceStr, signature} = data.data;
@@ -30,7 +31,9 @@ async function ddConfig() {
                 });
                 dd.error(err => {
                     console.error(err);
-                    alert(JSON.stringify(err));
+                });
+                dd.ready(() => {
+                    console.log('ready');
                 });
             } else {
                 console.log(data.errors);
@@ -39,7 +42,6 @@ async function ddConfig() {
             console.log(e);
         }
 };
-ddConfig();
 
 export { ddConfig };
 
