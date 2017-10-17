@@ -4,6 +4,11 @@ const { AUTH_URL, APP_URL } = require(`../config/develop.json`);
 
 async function ddConfig() {
 
+        let isAuth = sessionStorage.getItem("auth");
+        if (isAuth) {
+            return ;
+        }
+
         let jsapiArr = Object.keys(jsapi);
         try {
 
@@ -13,6 +18,7 @@ async function ddConfig() {
                     url: APP_URL
                 })
             });
+
             console.log('heeh');
             let data = await res.json();
             console.log(data);
@@ -33,7 +39,7 @@ async function ddConfig() {
                     console.error(err);
                 });
                 dd.ready(() => {
-                    console.log('ready');
+                    sessionStorage.setItem("auth", true);
                 });
             } else {
                 console.log(data.errors);

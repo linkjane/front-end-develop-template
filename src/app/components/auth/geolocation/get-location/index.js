@@ -2,7 +2,7 @@ import React from 'react';
 
 import {change2Async} from 'util';
 
-import style from './index.css';
+import style from 'components/common/index.css';
 
 
 export default class GetLocationComponent extends React.Component {
@@ -15,8 +15,9 @@ export default class GetLocationComponent extends React.Component {
     }
 
     locate() {
-        dd.read(async => {
-
+        console.log(dd);
+        dd.ready(async => {
+            dd.device.geolocation.openGps();
         });
     }
 
@@ -45,7 +46,7 @@ export default class GetLocationComponent extends React.Component {
         let { location } = this.state;
         return (<div>
             <button className="btn btn-primary" onClick={this.getLocation}>获得地理位置</button>
-            <button onClick={this.locate}>定位</button>
+            {/*<button onClick={this.locate}>定位</button>*/}
             <div>返回值: </div>
             <div className={style.nowrap}>
                 <code>
