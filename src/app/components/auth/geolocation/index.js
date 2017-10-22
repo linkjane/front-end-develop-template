@@ -1,19 +1,60 @@
-import {
-    Route,
-    Link
-} from 'react-router-dom';
 import React from 'react';
 
-import GetLocationCompoent from './get-location';
+import {change2Async} from 'util';
+
+import style from 'components/common/index.css';
 
 
-const GeoLocationRoute = ({ match }) => (<div>
-    <Route exact path={match.url} render={() => (<div>
-        <Link to={`${match.url}/getlocation`}>获得地址</Link>
-    </div>)}></Route>
+export default class GetLocationComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: null
+        };
+        this.getLocation = this.getLocation.bind(this);
+    }
 
-    <Route path={`${match.url}/getlocation`} component={GetLocationCompoent}></Route>
-</div>);
+    locate() {
+        console.log(dd);
+        dd.ready(async => {
+            dd.device.geolocation.openGps();
+        });
+    }
 
+    getLocation() {
+        dd.ready(async ()=> {
+            try {
+                let result = await change2Async(dd.device.geolocation.get, {
+                    targetAccuracy : 1,
+                    coordinate : 1,
+                    withReGeocode : false,
+                    useCache: false, //默认是true，如果需要频繁获取地理位置，请设置false
+                });
 
-export { GeoLocationRoute, GetLocationCompoent };
+                console.log(result);
+                this.setState({
+                    location: result
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+        });
+    }
+
+    render() {
+        let { location } = this.state;
+        return (<div>
+            <button className="btn btn-primary" onClick={this.getLocation}>获得地理位置</button>
+            {/*<button onClick={this.locate}>定位</button>*/}
+            <div>返回值: </div>
+            <div className={style.nowrap}>
+                <code>
+                    {
+                        JSON.stringify(location)
+                    }
+                </code>
+            </div>
+        </div>)
+    }
+}

@@ -2,8 +2,8 @@ import { ddConfig } from  'dings';
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
-import { GeoLocationRoute }from 'components/auth/geolocation';
-import { BaseRoute } from 'components/auth/base';
+import GetLocationComponent from 'components/auth/geolocation';
+import getBaseComponent from 'components/auth/base';
 
 
 
@@ -30,8 +30,8 @@ export default ({ match }) => (<div>
         </div>)
     }></Route>
 
-    <Route path={`${match.url}/geolocation`} component={GeoLocationRoute}></Route>
-    <Route path={`${match.url}/geolocation`} component={BaseRoute}></Route>
+    <Route path={`${match.url}/geolocation`} component={GetLocationComponent}></Route>
+    <Route path={`${match.url}/base`} component={getBaseComponent}></Route>
 
 </div>)
 
