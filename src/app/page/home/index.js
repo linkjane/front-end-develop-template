@@ -11,6 +11,7 @@ export default class Home extends React.Component {
 
         return (<div>
             <div>
+                <hr />
                 <Link to="/no-auth-demo">不需要鉴权</Link>
             </div>
             <div>

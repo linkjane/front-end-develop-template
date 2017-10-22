@@ -7,30 +7,26 @@ export default class NoAuthDemo extends React.Component {
 
 
     render() {
-        
+
         dd.ready(() => {
             dd.device.notification.alert({
                 message: "尼玛的",
                 title: "提示",//可传空
                 buttonName: "收到",
-                onSuccess : function() {
+                onSuccess: function () {
                     //onSuccess将在点击button之后回调
                     /*回调*/
-                    
+
                 },
-                onFail : function(err) {
+                onFail: function (err) {
                     console.log(err);
                 }
             });
-
-           
-          
         });
 
-       
 
         return (<div>
-                提示组件内部1
+            提示组件内部1
         </div>)
     }
 }
