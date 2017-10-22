@@ -13,6 +13,7 @@ import toast from './toast';
 import actionsheet from './actionsheet';
 import model from './model';
 import exendModel from './exendModel';
+import watchShake from './watchShake';
 
 
 
@@ -29,6 +30,7 @@ const NotificationsRoute = ({ match }) => (<div>
         <Link to={`${match.url}/actionsheet`}>actionsheet</Link><br />
         <Link to={`${match.url}/model`}>model弹浮层</Link><br />
         <Link to={`${match.url}/exendModel`}>exendModel</Link><br />
+        <Link to={`${match.url}/watchShake`}>监听</Link><br />
     </div>)}></Route>
 
     <Route path={`${match.url}/alert`} component={Alert}></Route>
@@ -40,6 +42,7 @@ const NotificationsRoute = ({ match }) => (<div>
     <Route path={`${match.url}/actionsheet`} component={actionsheet}></Route>
     <Route path={`${match.url}/model`} component={model}></Route>
     <Route path={`${match.url}/exendModel`} component={exendModel}></Route>
+    <Route path={`${match.url}/watchShake`} component={watchShake}></Route>
 </div>);
 
 
