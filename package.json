@@ -23,6 +23,12 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "watch": "webpack --progress --watch",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "watch-config": "nodemon config/config.js -w config/*"
+  },
+  "dependencies": {
+    "node-watch": "^0.5.5",
+    "webassembly": "^0.11.0",
+    "zrender": "^3.7.4"
   }
 }
