@@ -1,33 +1,83 @@
+const cWidth = 800;
+const cHeight = 800;
+let canvas = document.querySelector('#myCanvas');
+canvas.width = cWidth;
+canvas.height = cHeight;
 
-let zrender = require('zrender');
-let zr = zrender.init(document.querySelector('.draw-center'));
-var circle = new zrender.Circle({
-    shape: {
-        cx: 150,
-        cy: 50,
-        r: 40
-    },
-    style: {
-        fill: 'none',
-        stroke: '#F00'
-    }
-});
-zr.add(circle);
-
+const ctx = canvas.getContext('2d');
 
 require('webassembly')
     .load('./src/components/sqlist/sqlist.wasm', {
+        initialMemory: 10,
         imports: {
-            print: function(str) {
+            print: str => {
                 console.log(str);
+            },
+            jsFillRect: (x, y, w, h) => {
+                ctx.fillRect(x, y, w, h);
+            },
+            jsClearRect: (x, y, w, h) => {
+                ctx.clearRect(x, y, w, h);
+            },
+            jsFillCircle: (x, y, r) => {
+
+                let red = Math.floor(Math.random() * 256);
+                let green = Math.floor(Math.random() * 256);
+                let black = Math.floor(Math.random() * 256);
+                let alpha = .1 + Math.random();
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(${red}, ${green}, ${black}, ${alpha})`;
+                ctx.strokeStyle = '#e3f';
+                ctx.arc(x, y, r, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.closePath();
+            },
+            jsFillFPS: (fps) => {
+                ctx.save();
+                ctx.font = "20px Georgia";
+                ctx.textBaseline = 'top';
+                ctx.fillStyle = "black";
+                ctx.fillText("fps is:" + fps, 10, 10);
+                ctx.restore();
+            },
+
+            timeNow: () => {
+                return Date.now();
+            },
+            raFrame: callback => {
+                requestAnimationFrame(() => {
+                    mds.exports.runCallback(callback);
+                });
             }
         }
     })
     .then(module => {
-        Object.assign(module.env, {
-            print: function(str) {
-                console.log(str);
-            }
-        })
-        console.log(module.exports.add(1, 2));
+        mds = module;
+
+        module.exports.initCircles();
+        module.exports.animateCircle();
+
+        // module.exports.initRects();
+        // module.exports.test();
     });
+
+let rectWidth = 100;
+let direction = 1;
+let len = 10;
+
+const testAnimation = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (x >= innerWidth - rectWidth) {
+        // x = innerWidth - rectWidth;
+        x = innerWidth - rectWidth;
+        direction *= -1;
+    }
+    if (x <= 0) {
+       x = 0;
+       direction *= -1;
+    }
+    x += len * direction;
+    ctx.fillRect(x, 0, rectWidth, 100);
+    requestAnimationFrame(testAnimation);
+};
+

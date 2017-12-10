@@ -10,7 +10,7 @@ watcher.on('change', (evt, name) => {
     console.log(fileName);
     console.log(fileName);
     if (evt == 'update') {
-        shellProcess.exec(`wa compile -o ${fileName} ${name}`, (error, stdout, stderr) => {
+        shellProcess.exec(`wa compile -s 30000 -O  -o ${fileName} ${name}`, (error, stdout, stderr) => {
             console.log(error);
             console.log(stdout);
             console.log(stderr);

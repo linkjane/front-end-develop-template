@@ -5,6 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+    node: {
+        fs: 'empty'
+    },
     entry: './src/index.js',
     output: {
         filename: '[name].bundle.js',
