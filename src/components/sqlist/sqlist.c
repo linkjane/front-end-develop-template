@@ -6,7 +6,8 @@
 extern print(char* message);
 extern jsFillRect(double x, double y, double w, double h);
 extern jsClearRect(double x, double y, double w, double h);
-extern jsFillCircle(double x, double y, int r);
+extern jsFillCircle(double x, double y, int r, int red, int green, int black, double alpha);
+extern jsFillCircleColorful(double x, double y, int r);
 
 extern jsFillFPS(int num);
 
@@ -79,13 +80,17 @@ typedef struct {
     double yDistance;
     double xDirection;
     double yDirection;
+    int red;
+    int green;
+    int black;
+    double alpha;
 } Circle;
 
-int maxCircleSize = 1;
+const int maxCircleSize = 10;
 int maxCircleRadius = 100;
 
 
-Circle circles[1];
+Circle circles[maxCircleSize];
 export void initCircles() {
     for (int i = 0; i < maxCircleSize; ++i) {
         Point p = {
@@ -97,17 +102,25 @@ export void initCircles() {
         int yDis = randomIntNumber(0, maxDistance);
         int xDirection = randomIntNumber(0, 2) > 1 ? 1 : -1;
         int yDirection = randomIntNumber(0, 2) > 1 ? 1 : -1;
-
+        int red = Math_floor(Math_random() * 256);
+        int green = Math_floor(Math_random() * 256);
+        int black = Math_floor(Math_random() * 256);
+        double alpha = 0.1 + Math_random();
         circles[i].point = p;
         circles[i].r = r;
         circles[i].xDistance = xDis;
         circles[i].yDistance = yDis;
         circles[i].xDirection = xDirection;
         circles[i].yDirection = yDirection;
+        circles[i].red = red;
+        circles[i].green = green;
+        circles[i].black = black;
+        circles[i].alpha = alpha;
+        console_log("alpha c %lf", alpha);
     }
 }
 
-export void drawCircle() {
+ export void drawCircle() {
     for (int i = 0; i < maxCircleSize; ++i) {
         if (circles[i].point.x >= cWidth - circles[i].r) {
             circles[i].point.x = cWidth - circles[i].r;
@@ -126,9 +139,10 @@ export void drawCircle() {
             circles[i].point.y = 0;
             circles[i].yDirection *= -1;
         }
+
         circles[i].point.x += circles[i].xDistance * circles[i].xDirection;
         circles[i].point.y += circles[i].yDistance * circles[i].yDirection;
-        jsFillCircle(circles[i].point.x, circles[i].point.y, circles[i].r);
+        jsFillCircle(circles[i].point.x, circles[i].point.y, circles[i].r, circles[i].red, circles[i].green, circles[i].black, circles[i].alpha);
     }
 }
 

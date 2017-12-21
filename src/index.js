@@ -19,8 +19,19 @@ require('webassembly')
             jsClearRect: (x, y, w, h) => {
                 ctx.clearRect(x, y, w, h);
             },
-            jsFillCircle: (x, y, r) => {
+            jsFillCircle: (x, y, r, red, green, black, alpha) => {
+                alpha = Number(alpha).toFixed(1);
+                // console.log("red: %d, green: %d, black: %d, alpha: %lf", red, green, black, alpha);
 
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(${red}, ${green}, ${black}, ${alpha})`;
+                ctx.strokeStyle = '#e3f';
+                ctx.arc(x, y, r, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.closePath();
+            },
+            jsFillCircleColorful: (x, y, r) => {
+                console.log('hsdf')
                 let red = Math.floor(Math.random() * 256);
                 let green = Math.floor(Math.random() * 256);
                 let black = Math.floor(Math.random() * 256);
@@ -29,6 +40,7 @@ require('webassembly')
                 ctx.fillStyle = `rgba(${red}, ${green}, ${black}, ${alpha})`;
                 ctx.strokeStyle = '#e3f';
                 ctx.arc(x, y, r, 0, 2 * Math.PI);
+
                 ctx.fill();
                 ctx.closePath();
             },
@@ -53,7 +65,6 @@ require('webassembly')
     })
     .then(module => {
         mds = module;
-
         module.exports.initCircles();
         module.exports.animateCircle();
 
@@ -61,23 +72,5 @@ require('webassembly')
         // module.exports.test();
     });
 
-let rectWidth = 100;
-let direction = 1;
-let len = 10;
 
-const testAnimation = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (x >= innerWidth - rectWidth) {
-        // x = innerWidth - rectWidth;
-        x = innerWidth - rectWidth;
-        direction *= -1;
-    }
-    if (x <= 0) {
-       x = 0;
-       direction *= -1;
-    }
-    x += len * direction;
-    ctx.fillRect(x, 0, rectWidth, 100);
-    requestAnimationFrame(testAnimation);
-};
 
